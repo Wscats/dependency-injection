@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "ES2019", // 为了让 Jest 支持 Optional Chaining
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "strict": true,
+        "esModuleInterop": true,
+        "noImplicitAny": true,
+        "declaration": true,
+        "jsx": "react",
+        "experimentalDecorators": true, // 为了让其支持装饰器语法
+        "declarationDir": "dist",
+        "baseUrl": "./",
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ]
+        },
+        "resolveJsonModule": true,
+    },
+    "exclude": []
+}
