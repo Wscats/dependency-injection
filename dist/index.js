@@ -103,7 +103,17 @@ return /******/ (function(modules) { // webpackBootstrap
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _arrayLikeToArray(arr, len) {\n  if (len == null || len > arr.length) len = arr.length;\n\n  for (var i = 0, arr2 = new Array(len); i < len; i++) {\n    arr2[i] = arr[i];\n  }\n\n  return arr2;\n}\n\nmodule.exports = _arrayLikeToArray;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/arrayLikeToArray.js?");
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+module.exports = _arrayLikeToArray;
 
 /***/ }),
 
@@ -114,7 +124,11 @@ eval("function _arrayLikeToArray(arr, len) {\n  if (len == null || len > arr.len
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _arrayWithHoles(arr) {\n  if (Array.isArray(arr)) return arr;\n}\n\nmodule.exports = _arrayWithHoles;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/arrayWithHoles.js?");
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+module.exports = _arrayWithHoles;
 
 /***/ }),
 
@@ -125,7 +139,13 @@ eval("function _arrayWithHoles(arr) {\n  if (Array.isArray(arr)) return arr;\n}\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ \"./node_modules/@babel/runtime/helpers/arrayLikeToArray.js\");\n\nfunction _arrayWithoutHoles(arr) {\n  if (Array.isArray(arr)) return arrayLikeToArray(arr);\n}\n\nmodule.exports = _arrayWithoutHoles;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js?");
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+
+module.exports = _arrayWithoutHoles;
 
 /***/ }),
 
@@ -136,7 +156,13 @@ eval("var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ \"./n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _classCallCheck(instance, Constructor) {\n  if (!(instance instanceof Constructor)) {\n    throw new TypeError(\"Cannot call a class as a function\");\n  }\n}\n\nmodule.exports = _classCallCheck;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/classCallCheck.js?");
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
 
 /***/ }),
 
@@ -147,7 +173,28 @@ eval("function _classCallCheck(instance, Constructor) {\n  if (!(instance instan
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ \"./node_modules/@babel/runtime/helpers/setPrototypeOf.js\");\n\nvar isNativeReflectConstruct = __webpack_require__(/*! ./isNativeReflectConstruct */ \"./node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js\");\n\nfunction _construct(Parent, args, Class) {\n  if (isNativeReflectConstruct()) {\n    module.exports = _construct = Reflect.construct;\n  } else {\n    module.exports = _construct = function _construct(Parent, args, Class) {\n      var a = [null];\n      a.push.apply(a, args);\n      var Constructor = Function.bind.apply(Parent, a);\n      var instance = new Constructor();\n      if (Class) setPrototypeOf(instance, Class.prototype);\n      return instance;\n    };\n  }\n\n  return _construct.apply(null, arguments);\n}\n\nmodule.exports = _construct;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/construct.js?");
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
+
+var isNativeReflectConstruct = __webpack_require__(/*! ./isNativeReflectConstruct */ "./node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js");
+
+function _construct(Parent, args, Class) {
+  if (isNativeReflectConstruct()) {
+    module.exports = _construct = Reflect.construct;
+  } else {
+    module.exports = _construct = function _construct(Parent, args, Class) {
+      var a = [null];
+      a.push.apply(a, args);
+      var Constructor = Function.bind.apply(Parent, a);
+      var instance = new Constructor();
+      if (Class) setPrototypeOf(instance, Class.prototype);
+      return instance;
+    };
+  }
+
+  return _construct.apply(null, arguments);
+}
+
+module.exports = _construct;
 
 /***/ }),
 
@@ -158,7 +205,23 @@ eval("var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ \"./node_
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _defineProperties(target, props) {\n  for (var i = 0; i < props.length; i++) {\n    var descriptor = props[i];\n    descriptor.enumerable = descriptor.enumerable || false;\n    descriptor.configurable = true;\n    if (\"value\" in descriptor) descriptor.writable = true;\n    Object.defineProperty(target, descriptor.key, descriptor);\n  }\n}\n\nfunction _createClass(Constructor, protoProps, staticProps) {\n  if (protoProps) _defineProperties(Constructor.prototype, protoProps);\n  if (staticProps) _defineProperties(Constructor, staticProps);\n  return Constructor;\n}\n\nmodule.exports = _createClass;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/createClass.js?");
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+module.exports = _createClass;
 
 /***/ }),
 
@@ -169,7 +232,20 @@ eval("function _defineProperties(target, props) {\n  for (var i = 0; i < props.l
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _isNativeReflectConstruct() {\n  if (typeof Reflect === \"undefined\" || !Reflect.construct) return false;\n  if (Reflect.construct.sham) return false;\n  if (typeof Proxy === \"function\") return true;\n\n  try {\n    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));\n    return true;\n  } catch (e) {\n    return false;\n  }\n}\n\nmodule.exports = _isNativeReflectConstruct;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js?");
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+module.exports = _isNativeReflectConstruct;
 
 /***/ }),
 
@@ -180,7 +256,11 @@ eval("function _isNativeReflectConstruct() {\n  if (typeof Reflect === \"undefin
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _iterableToArray(iter) {\n  if (typeof Symbol !== \"undefined\" && Symbol.iterator in Object(iter)) return Array.from(iter);\n}\n\nmodule.exports = _iterableToArray;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/iterableToArray.js?");
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
 
 /***/ }),
 
@@ -191,7 +271,34 @@ eval("function _iterableToArray(iter) {\n  if (typeof Symbol !== \"undefined\" &
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _iterableToArrayLimit(arr, i) {\n  if (typeof Symbol === \"undefined\" || !(Symbol.iterator in Object(arr))) return;\n  var _arr = [];\n  var _n = true;\n  var _d = false;\n  var _e = undefined;\n\n  try {\n    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {\n      _arr.push(_s.value);\n\n      if (i && _arr.length === i) break;\n    }\n  } catch (err) {\n    _d = true;\n    _e = err;\n  } finally {\n    try {\n      if (!_n && _i[\"return\"] != null) _i[\"return\"]();\n    } finally {\n      if (_d) throw _e;\n    }\n  }\n\n  return _arr;\n}\n\nmodule.exports = _iterableToArrayLimit;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js?");
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+module.exports = _iterableToArrayLimit;
 
 /***/ }),
 
@@ -202,7 +309,11 @@ eval("function _iterableToArrayLimit(arr, i) {\n  if (typeof Symbol === \"undefi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _nonIterableRest() {\n  throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\");\n}\n\nmodule.exports = _nonIterableRest;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/nonIterableRest.js?");
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableRest;
 
 /***/ }),
 
@@ -213,7 +324,11 @@ eval("function _nonIterableRest() {\n  throw new TypeError(\"Invalid attempt to 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _nonIterableSpread() {\n  throw new TypeError(\"Invalid attempt to spread non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\");\n}\n\nmodule.exports = _nonIterableSpread;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/nonIterableSpread.js?");
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableSpread;
 
 /***/ }),
 
@@ -224,7 +339,16 @@ eval("function _nonIterableSpread() {\n  throw new TypeError(\"Invalid attempt t
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _setPrototypeOf(o, p) {\n  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {\n    o.__proto__ = p;\n    return o;\n  };\n\n  return _setPrototypeOf(o, p);\n}\n\nmodule.exports = _setPrototypeOf;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/setPrototypeOf.js?");
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
 
 /***/ }),
 
@@ -235,7 +359,19 @@ eval("function _setPrototypeOf(o, p) {\n  module.exports = _setPrototypeOf = Obj
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles */ \"./node_modules/@babel/runtime/helpers/arrayWithHoles.js\");\n\nvar iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit */ \"./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js\");\n\nvar unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray */ \"./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js\");\n\nvar nonIterableRest = __webpack_require__(/*! ./nonIterableRest */ \"./node_modules/@babel/runtime/helpers/nonIterableRest.js\");\n\nfunction _slicedToArray(arr, i) {\n  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();\n}\n\nmodule.exports = _slicedToArray;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/slicedToArray.js?");
+var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles */ "./node_modules/@babel/runtime/helpers/arrayWithHoles.js");
+
+var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit */ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js");
+
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray */ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
+
+var nonIterableRest = __webpack_require__(/*! ./nonIterableRest */ "./node_modules/@babel/runtime/helpers/nonIterableRest.js");
+
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
+}
+
+module.exports = _slicedToArray;
 
 /***/ }),
 
@@ -246,7 +382,19 @@ eval("var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles */ \"./node_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ \"./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js\");\n\nvar iterableToArray = __webpack_require__(/*! ./iterableToArray */ \"./node_modules/@babel/runtime/helpers/iterableToArray.js\");\n\nvar unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray */ \"./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js\");\n\nvar nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ \"./node_modules/@babel/runtime/helpers/nonIterableSpread.js\");\n\nfunction _toConsumableArray(arr) {\n  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();\n}\n\nmodule.exports = _toConsumableArray;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/toConsumableArray.js?");
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
+
+var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "./node_modules/@babel/runtime/helpers/iterableToArray.js");
+
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray */ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
+
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
 
 /***/ }),
 
@@ -257,7 +405,23 @@ eval("var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ \".
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function _typeof(obj) {\n  \"@babel/helpers - typeof\";\n\n  if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") {\n    module.exports = _typeof = function _typeof(obj) {\n      return typeof obj;\n    };\n  } else {\n    module.exports = _typeof = function _typeof(obj) {\n      return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj;\n    };\n  }\n\n  return _typeof(obj);\n}\n\nmodule.exports = _typeof;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/typeof.js?");
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
 
 /***/ }),
 
@@ -268,7 +432,18 @@ eval("function _typeof(obj) {\n  \"@babel/helpers - typeof\";\n\n  if (typeof Sy
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ \"./node_modules/@babel/runtime/helpers/arrayLikeToArray.js\");\n\nfunction _unsupportedIterableToArray(o, minLen) {\n  if (!o) return;\n  if (typeof o === \"string\") return arrayLikeToArray(o, minLen);\n  var n = Object.prototype.toString.call(o).slice(8, -1);\n  if (n === \"Object\" && o.constructor) n = o.constructor.name;\n  if (n === \"Map\" || n === \"Set\") return Array.from(n);\n  if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);\n}\n\nmodule.exports = _unsupportedIterableToArray;\n\n//# sourceURL=webpack://UserAgent/./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js?");
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(n);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+module.exports = _unsupportedIterableToArray;
 
 /***/ }),
 
@@ -280,7 +455,23 @@ eval("var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ \"./n
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"SyncDescriptor\", function() { return SyncDescriptor; });\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);\n\n\n/* 用于包裹构造函数，延迟初始化类 */\nvar SyncDescriptor = function SyncDescriptor(ctor) {\n  var staticArguments = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];\n  var supportsDelayedInstantiation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;\n\n  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, SyncDescriptor);\n\n  this.ctor = ctor;\n  this.staticArguments = staticArguments;\n  this.supportsDelayedInstantiation = supportsDelayedInstantiation;\n};\n\n//# sourceURL=webpack://UserAgent/./src/descriptors.ts?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SyncDescriptor", function() { return SyncDescriptor; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/* 用于包裹构造函数，延迟初始化类 */
+var SyncDescriptor = function SyncDescriptor(ctor) {
+  var staticArguments = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+  var supportsDelayedInstantiation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, SyncDescriptor);
+
+  this.ctor = ctor;
+  this.staticArguments = staticArguments;
+  this.supportsDelayedInstantiation = supportsDelayedInstantiation;
+};
 
 /***/ }),
 
@@ -292,7 +483,111 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Graph\", function() { return Graph; });\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ \"./node_modules/@babel/runtime/helpers/createClass.js\");\n/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\nfunction newNode(data) {\n  return {\n    data: data,\n    incoming: Object.create(null),\n    outcoming: Object.create(null)\n  };\n}\n\nvar Graph = /*#__PURE__*/function () {\n  function Graph(keyFn) {\n    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Graph);\n\n    this.keyFn = keyFn;\n    this.nodes = Object.create(null);\n  }\n  /* 获取图结构的叶子节点 */\n\n\n  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Graph, [{\n    key: \"root\",\n    value: function root() {\n      var ret = [];\n\n      for (var nodeKey in this.nodes) {\n        if (Object.prototype.hasOwnProperty.call(this.nodes, nodeKey)) {\n          var nodeElement = this.nodes[nodeKey];\n\n          if (Object.getOwnPropertyNames(nodeElement.outcoming).length === 0) {\n            ret.push(nodeElement);\n          }\n        }\n      }\n\n      return ret;\n    }\n    /* 从图结构中获取节点，如果节点不存在就创建一个并插入图中 */\n\n  }, {\n    key: \"lookupOrInsertNode\",\n    value: function lookupOrInsertNode(data) {\n      var key = this.keyFn(data);\n      var node = this.nodes[key];\n\n      if (!node) {\n        node = newNode(data);\n        this.nodes[key] = node;\n      }\n\n      return node;\n    }\n    /* 在图结构中插入一条边 */\n\n  }, {\n    key: \"insertEdge\",\n    value: function insertEdge(from, to) {\n      var fromNode = this.lookupOrInsertNode(from);\n      var toNode = this.lookupOrInsertNode(to);\n      var fromKey = this.keyFn(from);\n      var toKey = this.keyFn(to);\n      fromNode.outcoming[toKey] = toNode;\n      toNode.incoming[fromKey] = fromNode;\n    }\n    /* 在图结构中移除一个节点 */\n\n  }, {\n    key: \"removeNode\",\n    value: function removeNode(data) {\n      var delKey = this.keyFn(data);\n      delete this.nodes[delKey];\n\n      for (var nodeKey in this.nodes) {\n        if (Object.prototype.hasOwnProperty.call(this.nodes, nodeKey)) {\n          var nodeElement = this.nodes[nodeKey];\n          delete nodeElement.outcoming[delKey];\n          delete nodeElement.incoming[delKey];\n        }\n      }\n    }\n    /* 在图结构中查询节点 */\n\n  }, {\n    key: \"lookup\",\n    value: function lookup(data) {\n      return this.nodes[this.keyFn(data)];\n    }\n    /* 判断图结构是否为空 */\n\n  }, {\n    key: \"isEmpty\",\n    value: function isEmpty() {\n      return Object.keys(this.nodes).length === 0;\n    }\n  }]);\n\n  return Graph;\n}();\n\n//# sourceURL=webpack://UserAgent/./src/graph.ts?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Graph", function() { return Graph; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+function newNode(data) {
+  return {
+    data: data,
+    incoming: Object.create(null),
+    outcoming: Object.create(null)
+  };
+}
+
+var Graph = /*#__PURE__*/function () {
+  function Graph(keyFn) {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Graph);
+
+    this.keyFn = keyFn;
+    this.nodes = Object.create(null);
+  }
+  /* 获取图结构的叶子节点 */
+
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Graph, [{
+    key: "root",
+    value: function root() {
+      var ret = [];
+
+      for (var nodeKey in this.nodes) {
+        if (Object.prototype.hasOwnProperty.call(this.nodes, nodeKey)) {
+          var nodeElement = this.nodes[nodeKey];
+
+          if (Object.getOwnPropertyNames(nodeElement.outcoming).length === 0) {
+            ret.push(nodeElement);
+          }
+        }
+      }
+
+      return ret;
+    }
+    /* 从图结构中获取节点，如果节点不存在就创建一个并插入图中 */
+
+  }, {
+    key: "lookupOrInsertNode",
+    value: function lookupOrInsertNode(data) {
+      var key = this.keyFn(data);
+      var node = this.nodes[key];
+
+      if (!node) {
+        node = newNode(data);
+        this.nodes[key] = node;
+      }
+
+      return node;
+    }
+    /* 在图结构中插入一条边 */
+
+  }, {
+    key: "insertEdge",
+    value: function insertEdge(from, to) {
+      var fromNode = this.lookupOrInsertNode(from);
+      var toNode = this.lookupOrInsertNode(to);
+      var fromKey = this.keyFn(from);
+      var toKey = this.keyFn(to);
+      fromNode.outcoming[toKey] = toNode;
+      toNode.incoming[fromKey] = fromNode;
+    }
+    /* 在图结构中移除一个节点 */
+
+  }, {
+    key: "removeNode",
+    value: function removeNode(data) {
+      var delKey = this.keyFn(data);
+      delete this.nodes[delKey];
+
+      for (var nodeKey in this.nodes) {
+        if (Object.prototype.hasOwnProperty.call(this.nodes, nodeKey)) {
+          var nodeElement = this.nodes[nodeKey];
+          delete nodeElement.outcoming[delKey];
+          delete nodeElement.incoming[delKey];
+        }
+      }
+    }
+    /* 在图结构中查询节点 */
+
+  }, {
+    key: "lookup",
+    value: function lookup(data) {
+      return this.nodes[this.keyFn(data)];
+    }
+    /* 判断图结构是否为空 */
+
+  }, {
+    key: "isEmpty",
+    value: function isEmpty() {
+      return Object.keys(this.nodes).length === 0;
+    }
+  }]);
+
+  return Graph;
+}();
 
 /***/ }),
 
@@ -304,7 +599,113 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ \"./node_modules/@babel/runtime/helpers/createClass.js\");\n/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ \"./node_modules/@babel/runtime/helpers/typeof.js\");\n/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _instantiation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./instantiation */ \"./src/instantiation.ts\");\n/* harmony import */ var _instantiationService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./instantiationService */ \"./src/instantiationService.ts\");\n/* harmony import */ var _serviceCollection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./serviceCollection */ \"./src/serviceCollection.ts\");\n\n\n\n\nvar __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {\n  var c = arguments.length,\n      r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,\n      d;\n  if ((typeof Reflect === \"undefined\" ? \"undefined\" : _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2___default()(Reflect)) === \"object\" && typeof Reflect.decorate === \"function\") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {\n    if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;\n  }\n  return c > 3 && r && Object.defineProperty(target, key, r), r;\n};\n\nvar __param = undefined && undefined.__param || function (paramIndex, decorator) {\n  return function (target, key) {\n    decorator(target, key, paramIndex);\n  };\n};\n\n\n\n\n\nvar A = /*#__PURE__*/function () {\n  function A() {\n    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, A);\n  }\n\n  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(A, [{\n    key: \"echo\",\n    value: function echo() {\n      return 'A';\n    }\n  }]);\n\n  return A;\n}();\n\nvar B = /*#__PURE__*/function () {\n  function B() {\n    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, B);\n  }\n\n  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(B, [{\n    key: \"echo\",\n    value: function echo() {\n      return 'B';\n    }\n  }]);\n\n  return B;\n}(); // 装饰器\n\n\nvar serviceA = Object(_instantiation__WEBPACK_IMPORTED_MODULE_3__[\"createDecorator\"])('A');\nvar serviceB = Object(_instantiation__WEBPACK_IMPORTED_MODULE_3__[\"createDecorator\"])('B');\n\nvar C = /*#__PURE__*/function () {\n  function C(a, b) {\n    var leftText = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';\n    var rightText = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';\n\n    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, C);\n\n    this.a = a;\n    this.b = b;\n    this.leftText = leftText;\n    this.rightText = rightText;\n  }\n\n  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(C, [{\n    key: \"echo\",\n    value: function echo() {\n      return \"\".concat(this.a.echo()).concat(this.b.echo()).concat(this.leftText).concat(this.rightText);\n    }\n  }]);\n\n  return C;\n}();\n\nC = __decorate([__param(0, serviceA), __param(1, serviceB)], C);\nvar aInstance = new A();\nvar bInstance = new B();\nvar svrsCollection = new _serviceCollection__WEBPACK_IMPORTED_MODULE_5__[\"ServiceCollection\"]();\nsvrsCollection.set(serviceA, aInstance);\nsvrsCollection.set(serviceB, bInstance);\nvar instantiationService = new _instantiationService__WEBPACK_IMPORTED_MODULE_4__[\"InstantiationService\"](svrsCollection);\nvar cInstance = instantiationService.createInstance(C, 'L', 'R');\nconsole.log(instantiationService);\nconsole.log(cInstance);\nvar echoText = cInstance.echo();\nconsole.log(echoText);\ninstantiationService.invokeFunction(function (accessor) {\n  console.log(accessor);\n  var bInstance2 = accessor.get(serviceA);\n});\n\n//# sourceURL=webpack://UserAgent/./src/index.ts?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _instantiation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./instantiation */ "./src/instantiation.ts");
+/* harmony import */ var _instantiationService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./instantiationService */ "./src/instantiationService.ts");
+/* harmony import */ var _serviceCollection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./serviceCollection */ "./src/serviceCollection.ts");
+
+
+
+
+var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+      r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+      d;
+  if ((typeof Reflect === "undefined" ? "undefined" : _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2___default()(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+    if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  }
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var __param = undefined && undefined.__param || function (paramIndex, decorator) {
+  return function (target, key) {
+    decorator(target, key, paramIndex);
+  };
+};
+
+
+
+
+
+var A = /*#__PURE__*/function () {
+  function A() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, A);
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(A, [{
+    key: "echo",
+    value: function echo() {
+      return 'A';
+    }
+  }]);
+
+  return A;
+}();
+
+var B = /*#__PURE__*/function () {
+  function B() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, B);
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(B, [{
+    key: "echo",
+    value: function echo() {
+      return 'B';
+    }
+  }]);
+
+  return B;
+}(); // 装饰器
+
+
+var serviceA = Object(_instantiation__WEBPACK_IMPORTED_MODULE_3__["createDecorator"])('A');
+var serviceB = Object(_instantiation__WEBPACK_IMPORTED_MODULE_3__["createDecorator"])('B');
+
+var C = /*#__PURE__*/function () {
+  function C(a, b) {
+    var leftText = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+    var rightText = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, C);
+
+    this.a = a;
+    this.b = b;
+    this.leftText = leftText;
+    this.rightText = rightText;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(C, [{
+    key: "echo",
+    value: function echo() {
+      return "".concat(this.a.echo()).concat(this.b.echo()).concat(this.leftText).concat(this.rightText);
+    }
+  }]);
+
+  return C;
+}();
+
+C = __decorate([__param(0, serviceA), __param(1, serviceB)], C);
+var aInstance = new A();
+var bInstance = new B();
+var svrsCollection = new _serviceCollection__WEBPACK_IMPORTED_MODULE_5__["ServiceCollection"]();
+svrsCollection.set(serviceA, aInstance);
+svrsCollection.set(serviceB, bInstance);
+var instantiationService = new _instantiationService__WEBPACK_IMPORTED_MODULE_4__["InstantiationService"](svrsCollection);
+var cInstance = instantiationService.createInstance(C, 'L', 'R');
+console.log(instantiationService);
+console.log(cInstance);
+var echoText = cInstance.echo();
+console.log(echoText);
+instantiationService.invokeFunction(function (accessor) {
+  console.log(accessor);
+  var bInstance2 = accessor.get(serviceA);
+});
 
 /***/ }),
 
@@ -316,7 +717,64 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _bab
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"_util\", function() { return _util; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"storeServiceDependency\", function() { return storeServiceDependency; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createDecorator\", function() { return createDecorator; });\n// 用于获取target的$di$dependencies属性存储的依赖关系\nvar _util;\n\n(function (_util) {\n  _util.serviceIds = new Map();\n  _util.DI_TARGET = '$di$target';\n  _util.DI_DEPENDENCIES = '$di$dependencies';\n\n  function getServiceDependencies(ctor) {\n    return ctor[_util.DI_DEPENDENCIES] || [];\n  }\n\n  _util.getServiceDependencies = getServiceDependencies;\n})(_util || (_util = {})); // 用于在target的$di$dependencies属性存储依赖关系\n\n\nfunction storeServiceDependency(id, target, index, optional) {\n  if (target[_util.DI_TARGET] === target) {\n    target[_util.DI_DEPENDENCIES].push({\n      id: id,\n      index: index,\n      optional: optional\n    });\n  } else {\n    target[_util.DI_TARGET] = target;\n    target[_util.DI_DEPENDENCIES] = [{\n      id: id,\n      index: index,\n      optional: optional\n    }];\n  }\n} // 创建decorator\n\nfunction createDecorator(serviceId) {\n  if (_util.serviceIds.has(serviceId)) {\n    return _util.serviceIds.get(serviceId);\n  }\n\n  var id = function serviceIdentifier(target, key, index) {\n    if (arguments.length !== 3) {\n      throw new Error('@IServiceName-decorator can only be used to decorate a parameter');\n    }\n\n    storeServiceDependency(id, target, index, false);\n  };\n\n  id.toString = function () {\n    return serviceId;\n  };\n\n  _util.serviceIds.set(serviceId, id);\n\n  return id;\n}\n\n//# sourceURL=webpack://UserAgent/./src/instantiation.ts?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_util", function() { return _util; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeServiceDependency", function() { return storeServiceDependency; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createDecorator", function() { return createDecorator; });
+// 用于获取target的$di$dependencies属性存储的依赖关系
+var _util;
+
+(function (_util) {
+  _util.serviceIds = new Map();
+  _util.DI_TARGET = '$di$target';
+  _util.DI_DEPENDENCIES = '$di$dependencies';
+
+  function getServiceDependencies(ctor) {
+    return ctor[_util.DI_DEPENDENCIES] || [];
+  }
+
+  _util.getServiceDependencies = getServiceDependencies;
+})(_util || (_util = {})); // 用于在target的$di$dependencies属性存储依赖关系
+
+
+function storeServiceDependency(id, target, index, optional) {
+  if (target[_util.DI_TARGET] === target) {
+    target[_util.DI_DEPENDENCIES].push({
+      id: id,
+      index: index,
+      optional: optional
+    });
+  } else {
+    target[_util.DI_TARGET] = target;
+    target[_util.DI_DEPENDENCIES] = [{
+      id: id,
+      index: index,
+      optional: optional
+    }];
+  }
+} // 创建decorator
+
+function createDecorator(serviceId) {
+  if (_util.serviceIds.has(serviceId)) {
+    return _util.serviceIds.get(serviceId);
+  }
+
+  var id = function serviceIdentifier(target, key, index) {
+    if (arguments.length !== 3) {
+      throw new Error('@IServiceName-decorator can only be used to decorate a parameter');
+    }
+
+    storeServiceDependency(id, target, index, false);
+  };
+
+  id.toString = function () {
+    return serviceId;
+  };
+
+  _util.serviceIds.set(serviceId, id);
+
+  return id;
+}
 
 /***/ }),
 
@@ -328,7 +786,290 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"IdleValue\", function() { return IdleValue; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"InstantiationService\", function() { return InstantiationService; });\n/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ \"./node_modules/@babel/runtime/helpers/toConsumableArray.js\");\n/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/construct */ \"./node_modules/@babel/runtime/helpers/construct.js\");\n/* harmony import */ var _babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ \"./node_modules/@babel/runtime/helpers/createClass.js\");\n/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _graph__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./graph */ \"./src/graph.ts\");\n/* harmony import */ var _instantiation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./instantiation */ \"./src/instantiation.ts\");\n/* harmony import */ var _serviceCollection__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./serviceCollection */ \"./src/serviceCollection.ts\");\n/* harmony import */ var _descriptors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./descriptors */ \"./src/descriptors.ts\");\n\n\n\n\n\nfunction _createForOfIteratorHelper(o) { if (typeof Symbol === \"undefined\" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it[\"return\"] != null) it[\"return\"](); } finally { if (didErr) throw err; } } }; }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(n); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\n\n\n\n\nvar IdleValue = /*#__PURE__*/function () {\n  function IdleValue(executor) {\n    var _this = this;\n\n    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, IdleValue);\n\n    this.didRun = false;\n\n    this.executor = function () {\n      try {\n        _this.value = executor();\n      } catch (error) {\n        _this.error = error;\n      } finally {\n        _this.didRun = true;\n      }\n    };\n  }\n\n  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(IdleValue, [{\n    key: \"getValue\",\n    value: function getValue() {\n      if (!this.didRun) {\n        this.executor();\n      }\n\n      if (this.error) {\n        throw this.error;\n      }\n\n      return this.value;\n    }\n  }]);\n\n  return IdleValue;\n}();\nvar InstantiationService = /*#__PURE__*/function () {\n  function InstantiationService() {\n    var serices = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new _serviceCollection__WEBPACK_IMPORTED_MODULE_6__[\"ServiceCollection\"]();\n\n    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, InstantiationService);\n\n    this.services = serices;\n  }\n\n  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(InstantiationService, [{\n    key: \"createInstance\",\n    value: function createInstance(ctorOrDescriptor) {\n      for (var _len = arguments.length, rest = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {\n        rest[_key - 1] = arguments[_key];\n      }\n\n      var result = this.createCtorInstance(ctorOrDescriptor, rest);\n      return result;\n    }\n  }, {\n    key: \"invokeFunction\",\n    value: function invokeFunction(fn) {\n      var _this2 = this;\n\n      var done = false;\n\n      try {\n        var accessor = {\n          get: function get(id) {\n            if (done) {\n              throw new Error('service accessor is only valid during the invocation of its target method');\n            }\n\n            var result = _this2.getOrCreateServiceInstance(id);\n\n            if (!result) {\n              throw new Error(\"[invokeFunction] unknown service '\".concat(id, \"'\"));\n            }\n\n            return result;\n          }\n        };\n\n        for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {\n          args[_key2 - 1] = arguments[_key2];\n        }\n\n        return fn.apply(void 0, [accessor].concat(args));\n      } finally {\n        done = true;\n      }\n    }\n  }, {\n    key: \"createCtorInstance\",\n    value: function createCtorInstance(ctor) {\n      var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];\n\n      var serviceDependencies = _instantiation__WEBPACK_IMPORTED_MODULE_5__[\"_util\"].getServiceDependencies(ctor).sort(function (a, b) {\n        return a.index - b.index;\n      });\n\n      var serviceArgs = [];\n\n      var _iterator = _createForOfIteratorHelper(serviceDependencies),\n          _step;\n\n      try {\n        for (_iterator.s(); !(_step = _iterator.n()).done;) {\n          var dependency = _step.value;\n          var serviceInstance = this.getOrCreateServiceInstance(dependency.id);\n          serviceArgs.push(serviceInstance);\n        } // eslint-disable-next-line new-cap\n\n      } catch (err) {\n        _iterator.e(err);\n      } finally {\n        _iterator.f();\n      }\n\n      return _babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_1___default()(ctor, [].concat(serviceArgs, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(args)));\n    }\n  }, {\n    key: \"getOrCreateServiceInstance\",\n    value: function getOrCreateServiceInstance(id) {\n      var thing = this.getServiceInstanceOrDescriptor(id);\n\n      if (thing instanceof _descriptors__WEBPACK_IMPORTED_MODULE_7__[\"SyncDescriptor\"]) {\n        return this.createAndCacheServiceInstance(id, thing);\n      }\n\n      return thing;\n    }\n  }, {\n    key: \"getServiceInstanceOrDescriptor\",\n    value: function getServiceInstanceOrDescriptor(id) {\n      var instanceOrDesc = this.services.get(id);\n\n      if (!instanceOrDesc) {\n        throw new Error(\"service \".concat(id.toString(), \" is not in collection\"));\n      }\n\n      return instanceOrDesc;\n    }\n  }, {\n    key: \"createAndCacheServiceInstance\",\n    value: function createAndCacheServiceInstance(id, desc) {\n      var graph = new _graph__WEBPACK_IMPORTED_MODULE_4__[\"Graph\"](function (data) {\n        return data.id.toString();\n      });\n      var stack = [{\n        id: id,\n        desc: desc\n      }];\n\n      while (stack.length) {\n        var item = stack.pop();\n        graph.lookupOrInsertNode(item);\n\n        var _iterator2 = _createForOfIteratorHelper(_instantiation__WEBPACK_IMPORTED_MODULE_5__[\"_util\"].getServiceDependencies(item.desc.ctor)),\n            _step2;\n\n        try {\n          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {\n            var dependency = _step2.value;\n            var instanceOrDesc = this.getServiceInstanceOrDescriptor(dependency.id);\n\n            if (instanceOrDesc instanceof _descriptors__WEBPACK_IMPORTED_MODULE_7__[\"SyncDescriptor\"]) {\n              var dItem = {\n                id: dependency.id,\n                desc: instanceOrDesc\n              };\n              graph.insertEdge(item, dItem);\n              stack.push(dItem);\n            }\n          }\n        } catch (err) {\n          _iterator2.e(err);\n        } finally {\n          _iterator2.f();\n        }\n      }\n      /* eslint-disable-next-line no-constant-condition */\n\n\n      while (true) {\n        var roots = graph.root();\n\n        if (roots.length === 0) {\n          break;\n        }\n\n        var _iterator3 = _createForOfIteratorHelper(roots),\n            _step3;\n\n        try {\n          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {\n            var data = _step3.value.data;\n\n            var _service = this.createServiceInstance(data.id, data.desc.ctor, data.desc.staticArguments, data.desc.supportsDelayedInstantiation);\n\n            this.services.set(data.id, _service);\n            graph.removeNode(data);\n          }\n        } catch (err) {\n          _iterator3.e(err);\n        } finally {\n          _iterator3.f();\n        }\n      }\n\n      var service = this.getOrCreateServiceInstance(id);\n      return service;\n    }\n  }, {\n    key: \"createServiceInstance\",\n    value: function createServiceInstance(id, ctor, args, supportsDelayedInstantiation) {\n      var _this3 = this;\n\n      if (!(this.services.get(id) instanceof _descriptors__WEBPACK_IMPORTED_MODULE_7__[\"SyncDescriptor\"])) {\n        throw Error(\"illegalState - create UNKNOW service instance \".concat(id.toString()));\n      }\n\n      if (!supportsDelayedInstantiation) {\n        return this.createCtorInstance(ctor, args);\n      }\n\n      var idleObj = new IdleValue(function () {\n        return _this3.createCtorInstance(ctor, args);\n      });\n      return new Proxy(Object.create(null), {\n        get: function get(target, key) {\n          if (key in target) {\n            return target[key];\n          }\n\n          var obj = idleObj.getValue();\n          var prop = obj[key];\n\n          if (typeof prop === 'function') {\n            var bindProp = prop.bind(obj);\n            target[key] = bindProp;\n            return bindProp;\n          }\n\n          target[key] = prop;\n          return prop;\n        },\n        set: function set(target, key, value) {\n          var obj = idleObj.getValue();\n          obj[key] = value;\n          return true;\n        }\n      });\n    }\n  }]);\n\n  return InstantiationService;\n}();\n\n//# sourceURL=webpack://UserAgent/./src/instantiationService.ts?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IdleValue", function() { return IdleValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InstantiationService", function() { return InstantiationService; });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/construct */ "./node_modules/@babel/runtime/helpers/construct.js");
+/* harmony import */ var _babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _graph__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./graph */ "./src/graph.ts");
+/* harmony import */ var _instantiation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./instantiation */ "./src/instantiation.ts");
+/* harmony import */ var _serviceCollection__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./serviceCollection */ "./src/serviceCollection.ts");
+/* harmony import */ var _descriptors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./descriptors */ "./src/descriptors.ts");
+
+
+
+
+
+function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+var IdleValue = /*#__PURE__*/function () {
+  function IdleValue(executor) {
+    var _this = this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, IdleValue);
+
+    this.didRun = false;
+
+    this.executor = function () {
+      try {
+        _this.value = executor();
+      } catch (error) {
+        _this.error = error;
+      } finally {
+        _this.didRun = true;
+      }
+    };
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(IdleValue, [{
+    key: "getValue",
+    value: function getValue() {
+      if (!this.didRun) {
+        this.executor();
+      }
+
+      if (this.error) {
+        throw this.error;
+      }
+
+      return this.value;
+    }
+  }]);
+
+  return IdleValue;
+}();
+var InstantiationService = /*#__PURE__*/function () {
+  function InstantiationService() {
+    var serices = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new _serviceCollection__WEBPACK_IMPORTED_MODULE_6__["ServiceCollection"]();
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, InstantiationService);
+
+    this.services = serices;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(InstantiationService, [{
+    key: "createInstance",
+    value: function createInstance(ctorOrDescriptor) {
+      for (var _len = arguments.length, rest = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        rest[_key - 1] = arguments[_key];
+      }
+
+      var result = this.createCtorInstance(ctorOrDescriptor, rest);
+      return result;
+    }
+  }, {
+    key: "invokeFunction",
+    value: function invokeFunction(fn) {
+      var _this2 = this;
+
+      var done = false;
+
+      try {
+        var accessor = {
+          get: function get(id) {
+            if (done) {
+              throw new Error('service accessor is only valid during the invocation of its target method');
+            }
+
+            var result = _this2.getOrCreateServiceInstance(id);
+
+            if (!result) {
+              throw new Error("[invokeFunction] unknown service '".concat(id, "'"));
+            }
+
+            return result;
+          }
+        };
+
+        for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+          args[_key2 - 1] = arguments[_key2];
+        }
+
+        return fn.apply(void 0, [accessor].concat(args));
+      } finally {
+        done = true;
+      }
+    }
+  }, {
+    key: "createCtorInstance",
+    value: function createCtorInstance(ctor) {
+      var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+      var serviceDependencies = _instantiation__WEBPACK_IMPORTED_MODULE_5__["_util"].getServiceDependencies(ctor).sort(function (a, b) {
+        return a.index - b.index;
+      });
+
+      var serviceArgs = [];
+
+      var _iterator = _createForOfIteratorHelper(serviceDependencies),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var dependency = _step.value;
+          var serviceInstance = this.getOrCreateServiceInstance(dependency.id);
+          serviceArgs.push(serviceInstance);
+        } // eslint-disable-next-line new-cap
+
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      return _babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_1___default()(ctor, [].concat(serviceArgs, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(args)));
+    }
+  }, {
+    key: "getOrCreateServiceInstance",
+    value: function getOrCreateServiceInstance(id) {
+      var thing = this.getServiceInstanceOrDescriptor(id);
+
+      if (thing instanceof _descriptors__WEBPACK_IMPORTED_MODULE_7__["SyncDescriptor"]) {
+        return this.createAndCacheServiceInstance(id, thing);
+      }
+
+      return thing;
+    }
+  }, {
+    key: "getServiceInstanceOrDescriptor",
+    value: function getServiceInstanceOrDescriptor(id) {
+      var instanceOrDesc = this.services.get(id);
+
+      if (!instanceOrDesc) {
+        throw new Error("service ".concat(id.toString(), " is not in collection"));
+      }
+
+      return instanceOrDesc;
+    }
+  }, {
+    key: "createAndCacheServiceInstance",
+    value: function createAndCacheServiceInstance(id, desc) {
+      var graph = new _graph__WEBPACK_IMPORTED_MODULE_4__["Graph"](function (data) {
+        return data.id.toString();
+      });
+      var stack = [{
+        id: id,
+        desc: desc
+      }];
+
+      while (stack.length) {
+        var item = stack.pop();
+        graph.lookupOrInsertNode(item);
+
+        var _iterator2 = _createForOfIteratorHelper(_instantiation__WEBPACK_IMPORTED_MODULE_5__["_util"].getServiceDependencies(item.desc.ctor)),
+            _step2;
+
+        try {
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            var dependency = _step2.value;
+            var instanceOrDesc = this.getServiceInstanceOrDescriptor(dependency.id);
+
+            if (instanceOrDesc instanceof _descriptors__WEBPACK_IMPORTED_MODULE_7__["SyncDescriptor"]) {
+              var dItem = {
+                id: dependency.id,
+                desc: instanceOrDesc
+              };
+              graph.insertEdge(item, dItem);
+              stack.push(dItem);
+            }
+          }
+        } catch (err) {
+          _iterator2.e(err);
+        } finally {
+          _iterator2.f();
+        }
+      }
+      /* eslint-disable-next-line no-constant-condition */
+
+
+      while (true) {
+        var roots = graph.root();
+
+        if (roots.length === 0) {
+          break;
+        }
+
+        var _iterator3 = _createForOfIteratorHelper(roots),
+            _step3;
+
+        try {
+          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+            var data = _step3.value.data;
+
+            var _service = this.createServiceInstance(data.id, data.desc.ctor, data.desc.staticArguments, data.desc.supportsDelayedInstantiation);
+
+            this.services.set(data.id, _service);
+            graph.removeNode(data);
+          }
+        } catch (err) {
+          _iterator3.e(err);
+        } finally {
+          _iterator3.f();
+        }
+      }
+
+      var service = this.getOrCreateServiceInstance(id);
+      return service;
+    }
+  }, {
+    key: "createServiceInstance",
+    value: function createServiceInstance(id, ctor, args, supportsDelayedInstantiation) {
+      var _this3 = this;
+
+      if (!(this.services.get(id) instanceof _descriptors__WEBPACK_IMPORTED_MODULE_7__["SyncDescriptor"])) {
+        throw Error("illegalState - create UNKNOW service instance ".concat(id.toString()));
+      }
+
+      if (!supportsDelayedInstantiation) {
+        return this.createCtorInstance(ctor, args);
+      }
+
+      var idleObj = new IdleValue(function () {
+        return _this3.createCtorInstance(ctor, args);
+      });
+      return new Proxy(Object.create(null), {
+        get: function get(target, key) {
+          if (key in target) {
+            return target[key];
+          }
+
+          var obj = idleObj.getValue();
+          var prop = obj[key];
+
+          if (typeof prop === 'function') {
+            var bindProp = prop.bind(obj);
+            target[key] = bindProp;
+            return bindProp;
+          }
+
+          target[key] = prop;
+          return prop;
+        },
+        set: function set(target, key, value) {
+          var obj = idleObj.getValue();
+          obj[key] = value;
+          return true;
+        }
+      });
+    }
+  }]);
+
+  return InstantiationService;
+}();
 
 /***/ }),
 
@@ -340,9 +1081,67 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ServiceCollection\", function() { return ServiceCollection; });\n/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ \"./node_modules/@babel/runtime/helpers/slicedToArray.js\");\n/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ \"./node_modules/@babel/runtime/helpers/createClass.js\");\n/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\nvar ServiceCollection = /*#__PURE__*/function () {\n  function ServiceCollection() {\n    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, ServiceCollection);\n\n    this.entries = new Map();\n\n    for (var _len = arguments.length, entries = new Array(_len), _key = 0; _key < _len; _key++) {\n      entries[_key] = arguments[_key];\n    }\n\n    for (var _i = 0, _entries = entries; _i < _entries.length; _i++) {\n      var _entries$_i = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_entries[_i], 2),\n          id = _entries$_i[0],\n          service = _entries$_i[1];\n\n      this.set(id, service);\n    }\n  }\n\n  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(ServiceCollection, [{\n    key: \"set\",\n    value: function set(id, instanceOrDescriptor) {\n      var result = this.entries.get(id);\n      this.entries.set(id, instanceOrDescriptor);\n      return result;\n    }\n  }, {\n    key: \"has\",\n    value: function has(id) {\n      return this.entries.has(id);\n    }\n  }, {\n    key: \"get\",\n    value: function get(id) {\n      return this.entries.get(id);\n    }\n  }, {\n    key: \"forEach\",\n    value: function forEach(callback) {\n      this.entries.forEach(function (value, key) {\n        callback(key, value);\n      });\n    }\n  }]);\n\n  return ServiceCollection;\n}();\n\n//# sourceURL=webpack://UserAgent/./src/serviceCollection.ts?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServiceCollection", function() { return ServiceCollection; });
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+var ServiceCollection = /*#__PURE__*/function () {
+  function ServiceCollection() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, ServiceCollection);
+
+    this.entries = new Map();
+
+    for (var _len = arguments.length, entries = new Array(_len), _key = 0; _key < _len; _key++) {
+      entries[_key] = arguments[_key];
+    }
+
+    for (var _i = 0, _entries = entries; _i < _entries.length; _i++) {
+      var _entries$_i = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_entries[_i], 2),
+          id = _entries$_i[0],
+          service = _entries$_i[1];
+
+      this.set(id, service);
+    }
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(ServiceCollection, [{
+    key: "set",
+    value: function set(id, instanceOrDescriptor) {
+      var result = this.entries.get(id);
+      this.entries.set(id, instanceOrDescriptor);
+      return result;
+    }
+  }, {
+    key: "has",
+    value: function has(id) {
+      return this.entries.has(id);
+    }
+  }, {
+    key: "get",
+    value: function get(id) {
+      return this.entries.get(id);
+    }
+  }, {
+    key: "forEach",
+    value: function forEach(callback) {
+      this.entries.forEach(function (value, key) {
+        callback(key, value);
+      });
+    }
+  }]);
+
+  return ServiceCollection;
+}();
 
 /***/ })
 
 /******/ });
 });
+//# sourceMappingURL=index.js.map
