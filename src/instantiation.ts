@@ -1,5 +1,9 @@
-import { Ctor, ServiceIdentifier } from './typings/type';
+/**
+ * Copyright © 1998 - 2021 Tencent. All Rights Reserved.
+ * @author enoyao
+ */
 
+import { Ctor, ServiceIdentifier } from './typings/type';
 
 // 用于获取target的$di$dependencies属性存储的依赖关系
 export namespace _util {

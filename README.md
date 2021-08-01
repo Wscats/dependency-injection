@@ -1,22 +1,22 @@
-# 依赖注入
+# IOC/DI
 
-谈到依赖注入，必须先理解 IOC 与 DI。
+When it comes to dependency injection, you must first understand IOC and DI.
 
-- IOC，全称 Inversion Of Control，控制反转是面向对象编程的一种设计思想，主要用来降低代码之间的耦合度。
+- IOC, the full name of Inversion Of Control, inversion of control is a design idea of ​​object-oriented programming, mainly used to reduce the degree of coupling between codes.
 
-- DI，全称 Dependency Injection，依赖注入是 IOC 的具体实现。是指对象通过外部的注入，避免对象内部自身实现外部依赖的实例化过程。
+- DI, full name Dependency Injection, dependency injection is the concrete realization of IOC. It refers to the instantiation process of the object through external injection to avoid the object's internal realization of external dependencies.
 
-IOC 控制反转的设计模式可以大幅度地降低了程序的耦合性。而 装饰器在 VSCode 的控制反转设计模式里，其主要作用是实现 DI 依赖注入的功能和精简部分重复的写法。由于该步骤实现较为复杂，我们先从简单的例子为切入点去了解装饰器的基本原理。
+The IOC control inversion design pattern can greatly reduce the coupling of the program. In VSCode's inversion of control design pattern, the decorator's main function is to realize the DI dependency injection function and streamline part of the repetitive writing. Since the implementation of this step is more complicated, let's start with a simple example as a starting point to understand the basic principles of decorators.
 
-# 实现方案
+# Implementation
 
-`@serviceA` 和 `@serviceB` 是参数装饰器，用于处理参数，是由 `createDecorator` 方法创建的。
+`@serviceA` and `@serviceB` are parameter decorators, which are used to process parameters and are created by the `createDecorator` method.
 
-- @参数装饰器使用方法：接收三个参数
-  - target: 对于静态成员来说是类的构造器，对于实例成员来说是类的原型链
-  - key: 方法的名称，注意是方法的名称，而不是参数的名称
-  - index: 参数在方法中所处的位置的下标
-- @返回：返回的值将会被忽略
+- @Parameter decorator usage: receive three parameters
+  - target: For static members, it is the constructor of the class, and for instance members, it is the prototype chain of the class
+  - key: the name of the method, note that it is the name of the method, not the name of the parameter
+  - index: the index of the position of the parameter in the method
+- @Return: The returned value will be ignored
 
 ```ts
 class C {
@@ -24,14 +24,14 @@ class C {
 }
 ```
 
-所有参数装饰器均由 createDecorator 方法创建，`'A'` 和 `'B'`，均是该装饰器的唯一标识。
+All parameter decorators are created by the createDecorator method, and `'A'` and `'B'` are the unique identifiers of the decorator.
 
 ```ts
 const serviceA = createDecorator("A");
 const serviceB = createDecorator("B");
 ```
 
-装饰器首先判断是否被缓存，如果有被缓存则取出已经缓存好的参数装饰器，如果没被缓存，则创建一个 `serviceIdentifier` 的参数装饰器。
+The decorator first judges whether it is cached, if it is cached, the cached parameter decorator is taken out, if it is not cached, a parameter decorator of `serviceIdentifier` is created.
 
 ```ts
 function createDecorator<T>(serviceId: string): ServiceIdentifier<T> {
@@ -41,7 +41,7 @@ function createDecorator<T>(serviceId: string): ServiceIdentifier<T> {
 }
 ```
 
-`serviceIdentifier` 参数装饰器只做了一件事就是触发 `storeServiceDependency` 把所有依赖项给存起来，存装饰器本身 `id`，参数的下标 `index` 以及是否可选 `optional`。
+The only thing that the `serviceIdentifier` parameter decorator does is to trigger the `storeServiceDependency` to save all dependencies, store the decorator itself `id`, the parameter index `index` and whether it is optional `optional`.
 
 ```ts
 const id = function serviceIdentifier(target: Ctor<T>, key: string, index: number): void {
@@ -51,17 +51,17 @@ id.toString = () => serviceId;
 _util.serviceIds.set(serviceId, id);
 ```
 
-`storeServiceDependency` 本质是往 `target` 即 `class C` 上设置两个静态属性 `$di$target` 和 `$di$dependencies` 上面分别存 `target`，自身还要再存一次自身 `target` 是为了判断是否已经存过依赖。
+The essence of `storeServiceDependency` is to set two static attributes `$di$target` and `$di$dependencies` on `target`, that is, `class C`. The `target` is stored on them respectively, and the `target` itself has to be stored again. It is to judge whether the dependency has been saved.
 
 ```ts
 C.$di$target; // class C
-C.$di$dependencies[0].id.toString(); // A 或者 B
+C.$di$dependencies[0].id.toString(); // A or B
 C.$di$dependencies; // [{id: serviceIdentifier, index: 1, optional: false}, {id: serviceIdentifier, index: 0, optional: false}]
 ```
 
-除了存在类上，还存在了 `_util.serviceIds` 上。
+In addition to existing classes, there are also `_util.serviceIds`.
 
-当类声明的时候，装饰器就会被应用，所以在有类被实例化之前依赖关系就已经确定好了。把 `ts` 编译就可以证明这点，可以看到 `__decorate` 在类声明的时候，装饰器就会被执行了，
+When the class is declared, the decorator is applied, so the dependencies are determined before the class is instantiated. Compiling `ts` can prove this point. You can see that the decorator will be executed when `__decorate` is declared in the class.
 
 ```ts
 var C = /** @class */ (function() {
@@ -74,7 +74,7 @@ var C = /** @class */ (function() {
 })();
 ```
 
-紧接着就到了 `ServiceCollection`，这里会将装饰器作为 key 唯一标识，实例化的类作为 value，全部存到 `svrsCollection` 中，`svrsCollection` 的实现也很简单，直接用 `Map` 方法存起来。
+Then comes `ServiceCollection`, where the decorator will be used as the key to uniquely identify, and the instantiated class will be stored as the value in `svrsCollection`. The implementation of `svrsCollection` is also very simple. Use the `Map` method to store it directly. .
 
 ```ts
 const aInstance = new A();
@@ -84,38 +84,36 @@ svrsCollection.set(serviceA, aInstance);
 svrsCollection.set(serviceB, bInstance);
 ```
 
-后续只需要使用 get 方法并传入对应的参数装饰器就可以获取对应的实例化好的类了。
+Afterwards, you only need to use the get method and pass in the corresponding parameter decorator to get the corresponding instantiated class.
 
 ```ts
 svrsCollection.get(serviceA); // new A()
 svrsCollection.get(serviceB); // new B()
 ```
 
-`InstantiationService` 是实现依赖注入的核心，它是以参数装饰器，例如 `serviceA` 和 `serviceB` 等 `ServiceIdentifier` 为 `key` 在私有变量 `services` 中保存所有依赖注入的被实例化好的类。`services` 保存的是 `svrsCollection`。
+`InstantiationService` is the core of the implementation of dependency injection. It uses parameter decorators, such as `serviceA` and `serviceB`, etc.`ServiceIdentifier` as the `key`. All the dependency injections that are instantiated are stored in the private variable `services` kind. `services` saves `svrsCollection`.
 
 ```ts
 const instantiationService = new InstantiationService(svrsCollection);
 ```
 
-它暴露了三个公开方法：
+It exposes three public methods:
 
-- `createInstance` 该方法接受一个类以及构造该类的非依赖注入参数，然后创建该类的实例。
-- `invokeFunction` 该方法接受一个回调函数，该回调函数通过 `acessor` 参数可以访问该 `InstantiationService` 中的所有依赖注入项。
-- `createChild` 该方法接受一个依赖项集合，并创造一个新的 `InstantiationService` 说明 vscode 的依赖注入机制也是有层次的。
+-`createInstance` This method accepts a class and the non-dependency injection parameters for constructing the class, and then creates an instance of the class. -`invokeFunction` This method accepts a callback function, which can access all dependency injection items in the `InstantiationService` through the `acessor` parameter. -`createChild` This method accepts a set of dependencies and creates a new `InstantiationService` to show that the dependency injection mechanism of vscode is also hierarchical.
 
-`createInstance` 方法是实例化的核心方法：
+The `createInstance` method is the core method of instantiation:
 
 ```ts
 const cInstance = instantiationService.createInstance(C, "L", "R") as C;
 ```
 
-首先是获取 `ctorOrDescriptor` 也就是类 `class C` 和需要传入非依赖注入的参数 `rest`。
+The first is to get the `ctorOrDescriptor`, which is the class `class C`, and the parameter `rest` that needs to be passed in for non-dependency injection.
 
 ```ts
 const result = this.createCtorInstance(ctorOrDescriptor, rest);
 ```
 
-然后使用 `getServiceDependencies` 把挂载 `class C` 静态属性的 `$di$dependencies` 给获取出来并排序，因为存的时候顺序是倒序的
+Then use `getServiceDependencies` to obtain and sort the `$di$dependencies` that mounts the static properties of `class C`, because the order is reversed when stored
 
 ```ts
 const serviceDependencies = _util
@@ -123,7 +121,7 @@ const serviceDependencies = _util
   .sort((a, b) => a.index - b.index);
 ```
 
-取出来的依赖项 `serviceDependencies` 主要是为了遍历并获取里面的参数装饰器 `serviceA` 和 `serviceB`。
+The retrieved dependency `serviceDependencies` is mainly to traverse and obtain the parameter decorators `serviceA` and `serviceB` inside.
 
 ```ts
 const serviceArgs: any[] = [];
@@ -133,15 +131,15 @@ for (const dependency of serviceDependencies) {
 }
 ```
 
-`getOrCreateServiceInstance` 本质就是从 `services` 即 `svrsCollection` 中获取实例化好的类。
+The essence of `getOrCreateServiceInstance` is to get the instantiated class from `services` that is `svrsCollection`.
 
 ```ts
 const instanceOrDesc = this.services.get(id);
-// 相当于 id 即参数装饰器
+// Equivalent to id that is the parameter decorator
 // svrsCollection.get(id);
 ```
 
-当把所有的这些实例化好的类取出来放到 `serviceArgs` 中后，由于参数装饰器是类实例化的时候就执行完并收集好依赖项，所以 `serviceArgs` 就是对应 `ctor` 即 `class C` 需要注入的依赖参数，合并非依赖参数就能帮助我们成功实例化好我们的 `ctor` 类。
+When all these instantiated classes are taken out and put into `serviceArgs`, since the parameter decorator is executed when the class is instantiated and the dependencies are collected, `serviceArgs` corresponds to `ctor` ie`Class C` needs to be injected with dependent parameters. Combining non-dependent parameters can help us successfully instantiate our `ctor` class.
 
 ```ts
 new ctor(...[...serviceArgs, ...args]);

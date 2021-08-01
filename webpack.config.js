@@ -1,8 +1,8 @@
 /**
- * Copyright © 1998 - 2020 Tencent. All Rights Reserved.
- *
+ * Copyright © 1998 - 2021 Tencent. All Rights Reserved.
  * @author enoyao
  */
+
 const path = require('path');
 module.exports = {
     mode: 'development',

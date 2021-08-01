@@ -1,3 +1,8 @@
+/**
+ * Copyright © 1998 - 2021 Tencent. All Rights Reserved.
+ * @author enoyao
+ */
+
 import { createDecorator, _util } from './instantiation';
 import { InstantiationService } from './instantiationService';
 import { ServiceCollection } from './serviceCollection';

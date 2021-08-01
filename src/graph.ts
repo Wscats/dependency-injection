@@ -1,7 +1,13 @@
+/**
+ * Copyright © 1998 - 2021 Tencent. All Rights Reserved.
+ * @author enoyao
+ */
+
 import { ServiceIdentifier } from './typings/type';
 import { SyncDescriptor } from './descriptors';
+
 /* eslint-disable no-useless-constructor */
-export interface GraphItem{
+export interface GraphItem {
   id: ServiceIdentifier<any>;
   desc: SyncDescriptor<any>;
 }
@@ -27,7 +33,7 @@ function newNode<T>(data: T): Node<T> {
 export class Graph<T> {
   private readonly nodes: { [key: string]: Node<T> } = Object.create(null);
 
-  constructor(private readonly keyFn: (data: T) => string) {}
+  constructor(private readonly keyFn: (data: T) => string) { }
 
   /* 获取图结构的叶子节点 */
   root(): Node<T>[] {

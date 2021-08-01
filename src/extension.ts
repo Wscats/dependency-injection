@@ -1,3 +1,8 @@
+/**
+ * Copyright © 1998 - 2021 Tencent. All Rights Reserved.
+ * @author enoyao
+ */
+
 import { SyncDescriptor } from './descriptors';
 import { Ctor, ServiceIdentifier } from './typings/type';
 /* eslint-disable no-underscore-dangle */

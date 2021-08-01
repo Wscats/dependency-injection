@@ -1,3 +1,8 @@
+/**
+ * Copyright © 1998 - 2021 Tencent. All Rights Reserved.
+ * @author enoyao
+ */
+
 export type Ctor<T> = new (...args: any[]) => T;
 
 export interface ServicesAccessor {
