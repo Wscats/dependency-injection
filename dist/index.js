@@ -727,7 +727,7 @@ var _util;
 (function (_util) {
   _util.serviceIds = new Map();
   _util.DI_TARGET = '$di$target';
-  _util.DI_DEPENDENCIES = '$di$dependencies';
+  _util.DI_DEPENDENCIES = '$di$dependencies'; // 获取 $di$dependencies 依赖
 
   function getServiceDependencies(ctor) {
     return ctor[_util.DI_DEPENDENCIES] || [];
