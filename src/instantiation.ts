@@ -7,6 +7,7 @@ export namespace _util {
   export const DI_TARGET = '$di$target';
   export const DI_DEPENDENCIES = '$di$dependencies';
 
+  // 获取 $di$dependencies 依赖
   export function getServiceDependencies<T>(ctor: Ctor<T>): {
     id: ServiceIdentifier<T>;
     index: number;
