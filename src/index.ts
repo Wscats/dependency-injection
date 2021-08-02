@@ -20,19 +20,27 @@ class B {
     }
 }
 
+class C {
+    echo() {
+        return 'C';
+    }
+}
+
 // 装饰器
 const serviceA = createDecorator('A');
 const serviceB = createDecorator('B');
-class C {
+const serviceC = createDecorator('C');
+
+class D {
     private leftText: string;
     private rightText: string;
-    constructor(@serviceA private a: A, @serviceB private b: B, leftText = '', rightText = '') {
+    constructor(@serviceA private a: A, @serviceB private b: B, @serviceC private c: C, leftText = '', rightText = '') {
         this.leftText = leftText;
         this.rightText = rightText;
     }
 
     echo() {
-        return `${this.a.echo()}${this.b.echo()}${this.leftText}${this.rightText}`;
+        return `${this.a.echo()}${this.b.echo()}${this.c.echo()}${this.leftText}${this.rightText}`;
     }
 }
 
@@ -41,11 +49,13 @@ const bInstance = new B();
 const svrsCollection = new ServiceCollection();
 svrsCollection.set(serviceA, aInstance);
 svrsCollection.set(serviceB, bInstance);
+svrsCollection.set(serviceC, new SyncDescriptor(C));
+
 const instantiationService = new InstantiationService(svrsCollection);
-const cInstance = instantiationService.createInstance(C, 'L', 'R') as C;
+const dInstance = instantiationService.createInstance(D, 'L', 'R') as D;
 console.log(instantiationService);
-console.log(cInstance);
-const echoText = cInstance.echo();
+console.log(dInstance);
+const echoText = dInstance.echo();
 console.log(echoText);
 
 instantiationService.invokeFunction((accessor) => {
