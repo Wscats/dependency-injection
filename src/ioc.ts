@@ -11,7 +11,7 @@ export class NameProvider implements IProvider<string> {
 }
 
 const container = new Container();
-// container.bind<IProvider<string>>("nameProvider").to(NameProvider);
+container.bind<IProvider<string>>("nameProvider").to(NameProvider);
 // container.bind<IProvider<string>>(NameProvider).toSelf().inSingletonScope();
 
 export interface IconTheme<T> {
