@@ -1,46 +1,97 @@
-# Getting Started with Create React App
+# 通过 @injectable 装饰器标记类可注入
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- `injectable` 是可注入的意思，也就是告知依赖注入框架这个类需要被注册到容器中
+- `inject` 是注入的意思，它是一个装饰器工厂
 
-## Available Scripts
+用 `injectable` 装饰器来标志一个类是否是可依赖注入的，用 `inject` 装饰器来标志要注入的依赖类型，在解析阶段的时候会根据 `inject` 的参数在容器中查找依赖并注入。
 
-In the project directory, you can run:
+```ts
+import { Container, injectable, ContainerModule } from "inversify";
+export interface IProvider<T> {
+  getName(): T;
+}
 
-### `npm start`
+@injectable()
+export class NameProvider implements IProvider<string> {
+  getName() {
+    return "World";
+  }
+}
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+// Container 可以看作是整个依赖注入链路的入口
+const container = new Container();
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+// 一般依赖注入容器都是这种格式 ioc.bind(key, value)
+// InversifyJS 只是把它换成同等的形式 ioc.bind(key).to(value)
+container.bind<IProvider<string>>("nameProvider").to(NameProvider);
+// 1. 通过 nameProvider 字符串绑定，则使用 nameProvider 字符串来获取
+// const nameProvider: any = container.get("nameProvider");
 
-### `npm test`
+container.bind<IProvider<string>>(NameProvider).toSelf().inSingletonScope();
+// 2.通过 NameProvider 类绑定，则需要 NameProvider 类来获取
+// const nameProvider: any = container.get(NameProvider);
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 通过 ContainerModule 分层管理
 
-### `npm run build`
+在像 `theia` 这样的大型项目中，如果我们全部的依赖都直接绑定在 `Container` 上，显然不那么美观。而 `ContainerModule` 则是用于管理众多绑定的方法。
+通过 `ContainerModule`，我们就可以把绑定分散到不同的模块中，可以使架构条理更清晰。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```ts
+export interface IconTheme<T> {
+  canHandle(): number;
+  getIcon(): string;
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+@injectable()
+export class NoneIconTheme implements IconTheme<string> {
+  readonly id = "none";
+  readonly label = "None";
+  readonly description = "Disable file icons";
+  readonly hasFileIcons = true;
+  readonly hasFolderIcons = true;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  canHandle(): number {
+    return Number.MAX_SAFE_INTEGER;
+  }
 
-### `npm run eject`
+  getIcon(): string {
+    return "";
+  }
+}
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+const frontendApplicationModule = new ContainerModule(
+  (bind, unbind, isBound, rebind) => {
+    // to：绑定一个类（获取类的实例）
+    // toSelf：to 的简化版，当 serviceIdentifier（标识符）是构造函数时，直接绑定自身。
+    // toConstantValue：绑定一个常量
+    // toDynamicValue：绑定为动态数值，解析时执行传入的函数获取依赖。
+    // 后面可继续链式处理in、when、on
+    bind(NoneIconTheme).toSelf().inSingletonScope();
+  }
+);
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+container.load(frontendApplicationModule);
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# 通过 get 获取注入
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```ts
+const nameProvider: any = container.get("nameProvider");
+const nameProvider: any = container.get(NameProvider);
 
-## Learn More
+const iconTheme: any = container.get(NoneIconTheme);
+console.log(nameProvider.getName());
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# InversifyJS 工作流
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+InversifyJS 的工作流程主要分为五个阶段：
+
+| 阶段       | 描述       | 执行代码                            |
+| ---------- | ---------- | ----------------------------------- |
+| Annotation | 打标签阶段 | `@injectable` 和 `@inject` 标记阶段 |
+| Planning   | 规划阶段   | container.bind 阶段                 |
+| Middleware | 中间件阶段 | container.get 阶段                  |
+| Resolution | 解析阶段   |                                     |
+| Activation | 激活阶段   | 进入缓存触发，已在缓存不触发        |

@@ -11,20 +11,8 @@ export class NameProvider implements IProvider<string> {
 }
 
 const container = new Container();
-container.bind<IProvider<string>>("nameProvider").to(NameProvider);
-
-export interface Warrior {
-  fight(): string;
-  sneak(): string;
-}
-
-export interface Weapon {
-  hit(): string;
-}
-
-export interface ThrowableWeapon {
-  throw(): string;
-}
+// container.bind<IProvider<string>>("nameProvider").to(NameProvider);
+// container.bind<IProvider<string>>(NameProvider).toSelf().inSingletonScope();
 
 export interface IconTheme<T> {
   canHandle(): number;
