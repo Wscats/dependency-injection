@@ -16,7 +16,7 @@ export class IdleValue<T> {
   private readonly executor: () => void;
   private didRun = false;
   private value: T | undefined;
-  private error: any;
+  private error: unknown;
   constructor(executor: () => T) {
     this.executor = () => {
       try {
@@ -51,9 +51,9 @@ export class InstantiationService implements IInstantiationService {
   }
 
   createInstance<T>(
-    ctorOrDescriptor: new (...args: any[]) => T | SyncDescriptor<T>,
-    ...rest: any[]
-  ): any {
+    ctorOrDescriptor: new (...args: unknown[]) => T | SyncDescriptor<T>,
+    ...rest: unknown[]
+  ): unknown {
     const result = this.createCtorInstance(ctorOrDescriptor, rest);
     return result;
   }
@@ -87,13 +87,13 @@ export class InstantiationService implements IInstantiationService {
 
 
   private createCtorInstance<T>(
-    ctor: new (...args: any[]) => T,
-    args: any[] = [],
+    ctor: new (...args: unknown[]) => T,
+    args: unknown[] = [],
   ): T {
     const serviceDependencies = _util
       .getServiceDependencies(ctor)
       .sort((a, b) => a.index - b.index);
-    const serviceArgs: any[] = [];
+    const serviceArgs: unknown[] = [];
     for (const dependency of serviceDependencies) {
       const serviceInstance = this.getOrCreateServiceInstance(dependency.id);
       serviceArgs.push(serviceInstance);
@@ -162,7 +162,7 @@ export class InstantiationService implements IInstantiationService {
 
   private createServiceInstance<T>(
     id: ServiceIdentifier<T>,
-    ctor: Ctor<T>, args: any[],
+    ctor: Ctor<T>, args: unknown[],
     supportsDelayedInstantiation: boolean,
   ): T {
     if (!(this.services.get(id) instanceof SyncDescriptor)) {
@@ -173,9 +173,9 @@ export class InstantiationService implements IInstantiationService {
       return this.createCtorInstance(ctor, args);
     }
 
-    const idleObj = new IdleValue<any>(() => this.createCtorInstance(ctor, args));
+    const idleObj = new IdleValue<unknown>(() => this.createCtorInstance(ctor, args));
     return new Proxy(Object.create(null), {
-      get(target: any, key: PropertyKey): any {
+      get(target: unknown, key: PropertyKey): unknown {
         if (key in target) {
           return target[key];
         }
@@ -191,7 +191,7 @@ export class InstantiationService implements IInstantiationService {
         target[key] = prop;
         return prop;
       },
-      set(target: T, key: PropertyKey, value: any): boolean {
+      set(target: T, key: PropertyKey, value: unknown): boolean {
         const obj = idleObj.getValue();
         obj[key] = value;
         return true;

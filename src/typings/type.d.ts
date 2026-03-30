@@ -3,7 +3,7 @@
  * @author enoyao
  */
 
-export type Ctor<T> = new (...args: any[]) => T;
+export type Ctor<T> = new (...args: unknown[]) => T;
 
 export interface ServicesAccessor {
   get<T>(id: ServiceIdentifier<T>): T;

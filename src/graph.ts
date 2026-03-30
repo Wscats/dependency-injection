@@ -8,8 +8,8 @@ import { SyncDescriptor } from './descriptors';
 
 /* eslint-disable no-useless-constructor */
 export interface GraphItem {
-  id: ServiceIdentifier<any>;
-  desc: SyncDescriptor<any>;
+  id: ServiceIdentifier<unknown>;
+  desc: SyncDescriptor<unknown>;
 }
 
 export interface Node<GraphItem> {

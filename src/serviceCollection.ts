@@ -7,8 +7,8 @@ import { ServiceIdentifier } from './typings/type';
 import { SyncDescriptor } from './descriptors';
 
 export class ServiceCollection {
-  private entries = new Map<ServiceIdentifier<any>, SyncDescriptor<any> | any>();
-  constructor(...entries: [ServiceIdentifier<any>, SyncDescriptor<any> | any][]) {
+  private entries = new Map<ServiceIdentifier<unknown>, SyncDescriptor<unknown> | any>();
+  constructor(...entries: [ServiceIdentifier<unknown>, SyncDescriptor<unknown> | any][]) {
     for (const [id, service] of entries) {
       this.set(id, service);
     }
@@ -23,7 +23,7 @@ export class ServiceCollection {
     return result;
   }
 
-  has(id: ServiceIdentifier<any>): boolean {
+  has(id: ServiceIdentifier<unknown>): boolean {
     return this.entries.has(id);
   }
 
@@ -32,8 +32,8 @@ export class ServiceCollection {
   }
 
   forEach(callback: (
-    id: ServiceIdentifier<any>,
-    instanceOrDescriptor: SyncDescriptor<any> | any
+    id: ServiceIdentifier<unknown>,
+    instanceOrDescriptor: SyncDescriptor<unknown> | any
   ) => any): void {
     this.entries.forEach((value, key) => {
       callback(key, value);

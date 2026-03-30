@@ -7,7 +7,7 @@ import { Ctor, ServiceIdentifier } from './typings/type';
 
 // 用于获取target的$di$dependencies属性存储的依赖关系
 export namespace _util {
-  export const serviceIds = new Map<string, ServiceIdentifier<any>>();
+  export const serviceIds = new Map<string, ServiceIdentifier<unknown>>();
   export const DI_TARGET = '$di$target';
   export const DI_DEPENDENCIES = '$di$dependencies';
 
@@ -64,8 +64,8 @@ export interface ServiceAccessor {
 }
 
 export interface IInstantiationService {
-  createInstance<T extends new (...args: any[]) => any>(
+  createInstance<T extends new (...args: unknown[]) => any>(
     t: T,
-    ...args: any[]
+    ...args: unknown[]
   ): InstanceType<T>;
 }

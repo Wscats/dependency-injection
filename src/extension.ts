@@ -7,7 +7,7 @@ import { SyncDescriptor } from './descriptors';
 import { Ctor, ServiceIdentifier } from './typings/type';
 /* eslint-disable no-underscore-dangle */
 
-const _registry: [ServiceIdentifier<any>, SyncDescriptor<any>][] = [];
+const _registry: [ServiceIdentifier<unknown>, SyncDescriptor<unknown>][] = [];
 
 export function registerSingleton<T>(
   id: ServiceIdentifier<T>,
@@ -17,6 +17,6 @@ export function registerSingleton<T>(
   _registry.push([id, new SyncDescriptor<T>(ctor, [], supportsDelayedInstantiation)]);
 }
 
-export function getSingletonServiceDescriptors(): [ServiceIdentifier<any>, SyncDescriptor<any>][] {
+export function getSingletonServiceDescriptors(): [ServiceIdentifier<unknown>, SyncDescriptor<unknown>][] {
   return _registry;
 }

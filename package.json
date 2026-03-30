@@ -10,9 +10,12 @@
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --ext .ts --fix .",
     "commitlint": "commitlint --color",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "lint:check": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
-  "author": "",
+  "author": "wscats (https://github.com/wscats)",
   "license": "ISC",
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.12.1",
@@ -74,5 +77,17 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  }
+  },
+  "keywords": [
+    "dependency",
+    "injection"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wscats/dependency-injection.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wscats/dependency-injection/issues"
+  },
+  "homepage": "https://github.com/wscats/dependency-injection#readme"
 }

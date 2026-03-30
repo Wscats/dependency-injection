@@ -8,7 +8,7 @@ describe('unit: instantiation', () => {
     expect(_util.serviceIds.get('decoratorA')).toEqual(decoratorA);
     // eslint-disable-next-line @typescript-eslint/no-extraneous-class
     class B {
-      constructor(@decoratorA a: any) {}
+      constructor(@decoratorA a: unknown) {}
     }
 
     expect(_util.getServiceDependencies(B)[0].id.toString()).toBe('decoratorA');

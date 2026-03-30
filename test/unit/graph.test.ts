@@ -2,7 +2,7 @@ import { Graph } from '../../src/graph';
 
 describe('unit: graph', () => {
   test('lookup/lookupOrInsertNode/isEmpty', () => {
-    const graph = new Graph((data: any) => data.id.toString());
+    const graph = new Graph((data: unknown) => data.id.toString());
     const data = {
       id: { toString: () => 'a' },
     };
@@ -16,7 +16,7 @@ describe('unit: graph', () => {
   });
 
   test('insertEdge/root/remove', () => {
-    const graph = new Graph((data: any) => data.id.toString());
+    const graph = new Graph((data: unknown) => data.id.toString());
     const dataA = {
       id: { toString: () => 'a' },
     };
