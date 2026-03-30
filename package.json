@@ -9,7 +9,8 @@
     "test:jest": "jest",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --ext .ts --fix .",
-    "commitlint": "commitlint --color"
+    "commitlint": "commitlint --color",
+    "type-check": "tsc --noEmit"
   },
   "author": "",
   "license": "ISC",
@@ -70,5 +71,8 @@
   "dependencies": {
     "babel-loader": "^8.1.0",
     "ts-loader": "^8.0.7"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
