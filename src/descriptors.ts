@@ -1,11 +1,17 @@
 /**
  * Copyright © 1998 - 2021 Tencent. All Rights Reserved.
+ * Dependency Injection - Sync descriptor for lazy service instantiation.
+ *
  * @author enoyao
  */
 
 import { Ctor } from './typings/type';
 
-/* 用于包裹构造函数，延迟初始化类 */
+/**
+ * Wraps a constructor to enable lazy (deferred) instantiation.
+ * Used by the service collection to store service definitions
+ * that should be created on first access.
+ */
 export class SyncDescriptor<T> {
   readonly ctor: Ctor<T>;
   readonly staticArguments: unknown[];

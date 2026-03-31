@@ -1,56 +1,61 @@
 /**
  * Copyright © 1998 - 2021 Tencent. All Rights Reserved.
+ * Dependency Injection - Graph data structure for dependency resolution.
+ *
  * @author enoyao
  */
 
 import { ServiceIdentifier } from './typings/type';
 import { SyncDescriptor } from './descriptors';
 
-/* eslint-disable no-useless-constructor */
+// ── Interfaces ───────────────────────────────────────────────────────────────
+
+/** An item in the dependency graph, linking a service ID to its descriptor. */
 export interface GraphItem {
   id: ServiceIdentifier<unknown>;
   desc: SyncDescriptor<unknown>;
 }
 
-export interface Node<GraphItem> {
-  data: GraphItem;
-  incoming: {
-    [key: string]: Node<GraphItem>;
-  };
-  outcoming: {
-    [key: string]: Node<GraphItem>;
-  };
+/** A node in the dependency graph with incoming and outgoing edges. */
+export interface Node<T> {
+  data: T;
+  incoming: Record<string, Node<T>>;
+  outcoming: Record<string, Node<T>>;
 }
 
+/** Create a new graph node with empty edge maps. */
 function newNode<T>(data: T): Node<T> {
   return {
     data,
-    incoming: Object.create(null),
-    outcoming: Object.create(null),
+    incoming: Object.create(null) as Record<string, Node<T>>,
+    outcoming: Object.create(null) as Record<string, Node<T>>,
   };
 }
 
+// ── Graph Class ──────────────────────────────────────────────────────────────
+
+/**
+ * A directed graph for resolving service dependencies.
+ * Supports topological ordering via root-node extraction.
+ */
 export class Graph<T> {
-  private readonly nodes: { [key: string]: Node<T> } = Object.create(null);
+  private readonly nodes: Record<string, Node<T>> = Object.create(null) as Record<string, Node<T>>;
 
-  constructor(private readonly keyFn: (data: T) => string) { }
+  constructor(private readonly keyFn: (data: T) => string) {}
 
-  /* 获取图结构的叶子节点 */
+  /** Get all leaf nodes (nodes with no outgoing edges). */
   root(): Node<T>[] {
     const ret: Node<T>[] = [];
-    for (const nodeKey in this.nodes) {
-      if (Object.prototype.hasOwnProperty.call(this.nodes, nodeKey)) {
-        const nodeElement: Node<T> = this.nodes[nodeKey];
-        if (Object.getOwnPropertyNames(nodeElement.outcoming).length === 0) {
-          ret.push(nodeElement);
-        }
+    for (const nodeKey of Object.keys(this.nodes)) {
+      const nodeElement = this.nodes[nodeKey];
+      if (nodeElement && Object.getOwnPropertyNames(nodeElement.outcoming).length === 0) {
+        ret.push(nodeElement);
       }
     }
-
     return ret;
   }
 
-  /* 从图结构中获取节点，如果节点不存在就创建一个并插入图中 */
+  /** Look up a node by data, or insert a new one if it doesn't exist. */
   lookupOrInsertNode(data: T): Node<T> {
     const key = this.keyFn(data);
     let node = this.nodes[key];
@@ -58,11 +63,10 @@ export class Graph<T> {
       node = newNode(data);
       this.nodes[key] = node;
     }
-
     return node;
   }
 
-  /* 在图结构中插入一条边 */
+  /** Insert a directed edge from `from` to `to`. */
   insertEdge(from: T, to: T): void {
     const fromNode = this.lookupOrInsertNode(from);
     const toNode = this.lookupOrInsertNode(to);
@@ -72,25 +76,25 @@ export class Graph<T> {
     toNode.incoming[fromKey] = fromNode;
   }
 
-  /* 在图结构中移除一个节点 */
+  /** Remove a node and all its edges from the graph. */
   removeNode(data: T): void {
     const delKey = this.keyFn(data);
     delete this.nodes[delKey];
-    for (const nodeKey in this.nodes) {
-      if (Object.prototype.hasOwnProperty.call(this.nodes, nodeKey)) {
-        const nodeElement: Node<T> = this.nodes[nodeKey];
+    for (const nodeKey of Object.keys(this.nodes)) {
+      const nodeElement = this.nodes[nodeKey];
+      if (nodeElement) {
         delete nodeElement.outcoming[delKey];
         delete nodeElement.incoming[delKey];
       }
     }
   }
 
-  /* 在图结构中查询节点 */
+  /** Look up a node by data. Returns undefined if not found. */
   lookup(data: T): Node<T> | undefined {
     return this.nodes[this.keyFn(data)];
   }
 
-  /* 判断图结构是否为空 */
+  /** Check if the graph has no nodes. */
   isEmpty(): boolean {
     return Object.keys(this.nodes).length === 0;
   }
